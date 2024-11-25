@@ -33,7 +33,8 @@
             entrarBtn = new Button();
             label3 = new Label();
             label2 = new Label();
-            label1 = new Label();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // senhaTxtBox
@@ -53,13 +54,13 @@
             // 
             // entrarBtn
             // 
-            entrarBtn.Location = new Point(343, 316);
+            entrarBtn.Location = new Point(337, 309);
             entrarBtn.Name = "entrarBtn";
             entrarBtn.Size = new Size(126, 52);
             entrarBtn.TabIndex = 10;
             entrarBtn.Text = "Entrar";
             entrarBtn.UseVisualStyleBackColor = true;
-            entrarBtn.Click += this.entrarBtn_Click;
+            entrarBtn.Click += entrarBtn_Click;
             // 
             // label3
             // 
@@ -79,29 +80,31 @@
             label2.TabIndex = 8;
             label2.Text = "Email";
             // 
-            // label1
+            // pictureBox1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F);
-            label1.Location = new Point(367, 82);
-            label1.Name = "label1";
-            label1.Size = new Size(73, 32);
-            label1.TabIndex = 7;
-            label1.Text = "Login";
+            pictureBox1.BackgroundImageLayout = ImageLayout.None;
+            pictureBox1.Image = Properties.Resources.EASY_PARK;
+            pictureBox1.Location = new Point(314, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(165, 91);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 13;
+            pictureBox1.TabStop = false;
             // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(pictureBox1);
             Controls.Add(senhaTxtBox);
             Controls.Add(emailTxtBox);
             Controls.Add(entrarBtn);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(label1);
             Name = "Login";
             Text = "Login page ";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -113,6 +116,6 @@
         private Button entrarBtn;
         private Label label3;
         private Label label2;
-        private Label label1;
+        private PictureBox pictureBox1;
     }
 }

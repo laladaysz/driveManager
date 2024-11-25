@@ -1,4 +1,5 @@
-﻿namespace DriveManager.Views
+﻿
+namespace DriveManager.Views
 {
     partial class Home
     {
@@ -71,6 +72,7 @@
             button1.TabIndex = 2;
             button1.Text = "entrar";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += this.button1_Click;
             // 
             // label2
             // 
@@ -156,6 +158,8 @@
             ResumeLayout(false);
             PerformLayout();
         }
+
+      
 
         #endregion
 

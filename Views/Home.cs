@@ -16,5 +16,12 @@ namespace DriveManager.Views
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            CadastroMotoristas cadastro = new CadastroMotoristas();
+            cadastro.Show();
+        }
     }
 }

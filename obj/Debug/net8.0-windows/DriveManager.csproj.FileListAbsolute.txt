@@ -32,3 +32,4 @@ C:\Users\ct67ca\Desktop\DriveManager\obj\Debug\net8.0-windows\DriveManager.genru
 C:\Users\ct67ca\Desktop\DriveManager\obj\Debug\net8.0-windows\ref\DriveManager.dll
 C:\Users\ct67ca\Desktop\DriveManager\obj\Debug\net8.0-windows\DriveManager.Properties.Resources.resources
 C:\Users\ct67ca\Desktop\DriveManager\obj\Debug\net8.0-windows\DriveManager.Views.Home.resources
+C:\Users\ct67ca\Desktop\DriveManager\obj\Debug\net8.0-windows\DriveManager.Views.CadastroMotoristas.resources
