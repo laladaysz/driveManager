@@ -46,7 +46,7 @@ namespace DriveManager.Views
             // 
             pictureBox1.BackgroundImageLayout = ImageLayout.None;
             pictureBox1.Image = Properties.Resources.EASY_PARK;
-            pictureBox1.Location = new Point(298, 12);
+            pictureBox1.Location = new Point(318, 6);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(165, 91);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -58,7 +58,7 @@ namespace DriveManager.Views
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(0, 64, 0);
-            label1.Location = new Point(195, 106);
+            label1.Location = new Point(215, 100);
             label1.Name = "label1";
             label1.Size = new Size(406, 26);
             label1.TabIndex = 1;
@@ -66,18 +66,18 @@ namespace DriveManager.Views
             // 
             // button1
             // 
-            button1.Location = new Point(92, 224);
+            button1.Location = new Point(112, 218);
             button1.Name = "button1";
             button1.Size = new Size(198, 37);
             button1.TabIndex = 2;
             button1.Text = "entrar";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += this.button1_Click;
+            button1.Click += button1_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(92, 186);
+            label2.Location = new Point(112, 180);
             label2.Name = "label2";
             label2.Size = new Size(198, 25);
             label2.TabIndex = 3;
@@ -86,7 +86,7 @@ namespace DriveManager.Views
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(477, 186);
+            label3.Location = new Point(497, 180);
             label3.Name = "label3";
             label3.Size = new Size(176, 25);
             label3.TabIndex = 5;
@@ -94,17 +94,18 @@ namespace DriveManager.Views
             // 
             // button2
             // 
-            button2.Location = new Point(477, 224);
+            button2.Location = new Point(497, 218);
             button2.Name = "button2";
             button2.Size = new Size(176, 37);
             button2.TabIndex = 4;
             button2.Text = "entrar";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(92, 287);
+            label4.Location = new Point(112, 281);
             label4.Name = "label4";
             label4.Size = new Size(246, 25);
             label4.TabIndex = 7;
@@ -112,7 +113,7 @@ namespace DriveManager.Views
             // 
             // button3
             // 
-            button3.Location = new Point(92, 325);
+            button3.Location = new Point(112, 319);
             button3.Name = "button3";
             button3.Size = new Size(198, 37);
             button3.TabIndex = 6;
@@ -122,7 +123,7 @@ namespace DriveManager.Views
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(477, 287);
+            label5.Location = new Point(497, 281);
             label5.Name = "label5";
             label5.Size = new Size(224, 25);
             label5.TabIndex = 9;
@@ -130,7 +131,7 @@ namespace DriveManager.Views
             // 
             // button4
             // 
-            button4.Location = new Point(477, 325);
+            button4.Location = new Point(497, 319);
             button4.Name = "button4";
             button4.Size = new Size(176, 37);
             button4.TabIndex = 8;
@@ -159,7 +160,7 @@ namespace DriveManager.Views
             PerformLayout();
         }
 
-      
+
 
         #endregion
 

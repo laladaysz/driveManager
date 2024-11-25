@@ -23,5 +23,12 @@ namespace DriveManager.Views
             CadastroMotoristas cadastro = new CadastroMotoristas();
             cadastro.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            CadastroVeiculo cadastroVeiculo = new CadastroVeiculo();
+            cadastroVeiculo.Show();
+        }
     }
 }

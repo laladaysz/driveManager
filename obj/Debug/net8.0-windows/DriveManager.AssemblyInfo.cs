@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DriveManager")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7236b6fa5ea4638a61e9d697f0ff58f953b32420")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fd2facf9d2f34893ed83e1a13324aa8dae2bf635")]
 [assembly: System.Reflection.AssemblyProductAttribute("DriveManager")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DriveManager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
