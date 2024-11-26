@@ -8,10 +8,10 @@ namespace DriveManager.Model
 {
     public class Motorista
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Telefone { get; set; }
-        public bool Ativo { get; set; } = true;
+        public long id_motorista { get; set; }
+        public string nome { get; set; }
+        public string email { get; set; }
+        public string telefone { get; set; }
+        
     }
 }

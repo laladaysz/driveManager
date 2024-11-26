@@ -17,19 +17,19 @@ namespace DriveManager.Controller
             motoristaDao = new MotoristaDAO();
         }
 
-        public void CadastrarMotorista(string nome, string email, string telefone, bool ativo)
+        public void CadastrarMotorista(string nome, string email, string telefone)
         {
             Motorista motorista = new Motorista
             {
-                Nome = nome,
-                Email = email,
-                Telefone = telefone,
-                Ativo = ativo
+                nome = nome,
+                email = email,
+                telefone = telefone,
+                
             };
             motoristaDao.cadastrarMotorista(motorista);
         }
 
-        public Motorista BuscarMotoristaPorId(int id)
+        public Motorista BuscarMotoristaPorId(long id)
         {
             return motoristaDao.BuscarMotoristaPorId(id);
         }
@@ -39,24 +39,18 @@ namespace DriveManager.Controller
             return motoristaDao.GetAllMotorista();
         }
 
-        public void ExcluirMotorista(int id)
+        public void ExcluirMotorista(long id)
         {
             motoristaDao.ExcluirMotorista(id);
         }
 
-        public void DesativarMotorista(int id)
-        {
-            motoristaDao.DesativarMotorista(id);
-        }
+        
 
-        public string GetNomeMotoristaById(int motoristaId)
+        public string GetNomeMotoristaById(long motoristaId)
         {
             return motoristaDao.BuscarNomeMotoristaPorId(motoristaId);
         }
 
-        public List<Motorista> GetMotoristaAtivos()
-        {
-            return motoristaDao.GetMotoristaAtivo();
-        }
+        
     }
 }

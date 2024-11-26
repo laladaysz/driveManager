@@ -27,10 +27,10 @@ namespace DriveManager
 
             if (usuario != null)
             {
-                MessageBox.Show("Login realizado com sucesso! Seja bem-vindo, " + usuario.Nome);
+                MessageBox.Show("Login realizado com sucesso! Seja bem-vindo, " + usuario.nome);
                 this.Hide();
 
-                if (usuario.Role == "ADMIN")
+                if (usuario.role == "ADMIN")
                 {
                     this.Hide();
                     Home home = new Home();

@@ -8,11 +8,11 @@ namespace DriveManager.Model
 {
     public class Veiculo
     {
-        public int Id { get; set; }
-        public string Placa { get; set; }
-        public string Modelo { get; set; }
-        public string Cor { get; set; }
-        public int MotoristaId { get; set; }
+        public long id_veiculo { get; set; }
+        public string placa { get; set; }
+        public string modelo { get; set; }
+        public string cor { get; set; }
+        public long id_motorista { get; set; }
 
     }
 }

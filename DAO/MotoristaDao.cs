@@ -10,30 +10,29 @@ namespace DriveManager.DAO
 {
     public class MotoristaDAO
     {
-        private string connectionString = "server=localhost;database=parking_lot;user=root;password=";
+        private string connectionString = "server=localhost;database=EasyPark;user=root;password=";
 
         public void cadastrarMotorista(Motorista motorista)
         {
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
                 con.Open();
-                string query = "INSERT INTO Motorista (Nome, Email, Telefone, Ativo) VALUES (@Nome, @Email, @Telefone, @Ativo)";
+                string query = "INSERT INTO Motoristas (nome, email, telefone) VALUES (@Nome, @Email, @Telefone)";
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@Nome", motorista.Nome);
-                cmd.Parameters.AddWithValue("@Email", motorista.Email);
-                cmd.Parameters.AddWithValue("@Telefone", motorista.Telefone);
-                cmd.Parameters.AddWithValue("@Ativo", motorista.Ativo);
+                cmd.Parameters.AddWithValue("@Nome", motorista.nome);
+                cmd.Parameters.AddWithValue("@Email", motorista.email);
+                cmd.Parameters.AddWithValue("@Telefone", motorista.telefone);
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
         }
 
-        public Motorista BuscarMotoristaPorId(int id)
+        public Motorista BuscarMotoristaPorId(long id)
         {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT * FROM Motorista WHERE Id = @Id";
+                string query = "SELECT * FROM Motoristas WHERE id_motorista = @Id";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Id", id);
 
@@ -42,11 +41,11 @@ namespace DriveManager.DAO
                 {
                     Motorista motorista = new Motorista()
                     {
-                        Id = (int)reader["Id"],
-                        Nome = (string)reader["Nome"],
-                        Email = (string)reader["Email"],
-                        Telefone = (string)reader["Telefone"],
-                        Ativo = (bool)reader["Ativo"]
+                        id_motorista = (long)reader["id_motorista"],
+                        nome = (string)reader["nome"],
+                        email = (string)reader["email"],
+                        telefone = (string)reader["telefone"],
+                        
                     };
                     conn.Close();
                     return motorista;
@@ -62,7 +61,7 @@ namespace DriveManager.DAO
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT * FROM Motorista";
+                string query = "SELECT * FROM Motoristas";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
 
                 MySqlDataReader reader = cmd.ExecuteReader();
@@ -70,11 +69,11 @@ namespace DriveManager.DAO
                 {
                     Motorista motorista = new Motorista
                     {
-                        Id = (int)reader["Id"],
-                        Nome = (string)reader["Nome"],
-                        Email = (string)reader["Email"],
-                        Telefone = (string)reader["Telefone"],
-                        Ativo = (bool)reader["Ativo"]
+                        id_motorista = (long)reader["id_motorista"],
+                        nome = (string)reader["nome"],
+                        email = (string)reader["email"],
+                        telefone = (string)reader["telefone"],
+
                     };
 
                     motoristas.Add(motorista);
@@ -85,17 +84,17 @@ namespace DriveManager.DAO
         }
 
 
-        public void ExcluirMotorista(int id)
+        public void ExcluirMotorista(long id)
         {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string deleteVeiculosQuery = "DELETE FROM Veiculo WHERE MotoristaId = @IdMotorista";
+                string deleteVeiculosQuery = "DELETE FROM Veiculos WHERE id_motorista = @IdMotorista";
                 MySqlCommand deleteVeiculosCmd = new MySqlCommand(deleteVeiculosQuery, conn);
                 deleteVeiculosCmd.Parameters.AddWithValue("@IdMotorista", id);
                 deleteVeiculosCmd.ExecuteNonQuery();
 
-                string query = "DELETE FROM Motorista WHERE Id = @Id";
+                string query = "DELETE FROM Motoristas WHERE id_motorista = @Id";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Id", id);
                 cmd.ExecuteNonQuery();
@@ -104,27 +103,15 @@ namespace DriveManager.DAO
         }
 
 
-        public void DesativarMotorista(int id)
-        {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = "UPDATE Motorista SET Ativo = 0 WHERE Id = @Id";
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.Parameters.AddWithValue("@Id", id);
-
-                cmd.ExecuteNonQuery();
-                connection.Close();
-            }
-        }
+       
 
 
-        public string BuscarNomeMotoristaPorId(int motoristaId)
+        public string BuscarNomeMotoristaPorId(long motoristaId)
         {
             using (var con = new MySqlConnection(connectionString))
             {
                 con.Open();
-                string query = "SELECT Nome FROM Motorista WHERE Id = @MotoristaId";
+                string query = "SELECT nome FROM Motoristas WHERE id_motorista = @MotoristaId";
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@MotoristaId", motoristaId);
 
@@ -132,7 +119,7 @@ namespace DriveManager.DAO
                 {
                     if (reader.Read())
                     {
-                        return reader["Nome"].ToString();
+                        return reader["nome"].ToString();
                     }
                 }
             }
@@ -141,34 +128,7 @@ namespace DriveManager.DAO
         }
 
 
-        public List<Motorista> GetMotoristaAtivo()
-        {
-            List<Motorista> motoristas = new List<Motorista>();
-
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
-            {
-                conn.Open();
-                string query = "SELECT * FROM Motorista WHERE Ativo = 1";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-
-                MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    Motorista motorista = new Motorista
-                    {
-                        Id = (int)reader["Id"],
-                        Nome = (string)reader["Nome"],
-                        Email = (string)reader["Email"],
-                        Telefone = (string)reader["Telefone"],
-                        Ativo = (bool)reader["Ativo"]
-                    };
-
-                    motoristas.Add(motorista);
-                }
-                conn.Close();
-            }
-            return motoristas;
-        }
+        
 
     }
 }

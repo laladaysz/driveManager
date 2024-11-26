@@ -76,9 +76,9 @@
             label2.AutoSize = true;
             label2.Location = new Point(295, 135);
             label2.Name = "label2";
-            label2.Size = new Size(54, 25);
+            label2.Size = new Size(56, 25);
             label2.TabIndex = 8;
-            label2.Text = "Email";
+            label2.Text = "Login";
             // 
             // pictureBox1
             // 

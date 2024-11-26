@@ -10,18 +10,18 @@ namespace DriveManager.DAO
 {
     public class VeiculoDAO
     {
-        private string connectionString = "server=localhost;database=parking_lot;user=root;password=";
+        private string connectionString = "server=localhost;database=EasyPark;user=root;password=";
 
-        public void CadastrarVeiculo(Veiculo veiculo, int idMotorista)
+        public void CadastrarVeiculo(Veiculo veiculo, long idMotorista)
         {
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
                 con.Open();
-                string query = "INSERT INTO Veiculo (Placa, Modelo, Cor, MotoristaId) VALUES (@Placa, @Modelo, @Cor, @MotoristaId)";
+                string query = "INSERT INTO Veiculos (placa, id_motorista, modelo, cor) VALUES (@Placa, @MotoristaId, @Modelo, @Cor)";
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@Placa", veiculo.Placa);
-                cmd.Parameters.AddWithValue("@Modelo", veiculo.Modelo);
-                cmd.Parameters.AddWithValue("@Cor", veiculo.Cor);
+                cmd.Parameters.AddWithValue("@Placa", veiculo.placa);
+                cmd.Parameters.AddWithValue("@Modelo", veiculo.modelo);
+                cmd.Parameters.AddWithValue("@Cor", veiculo.cor);
                 cmd.Parameters.AddWithValue("@MotoristaId", idMotorista);
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -35,7 +35,7 @@ namespace DriveManager.DAO
             using (var con = new MySqlConnection(connectionString))
             {
                 con.Open();
-                string query = "SELECT * FROM Veiculo";
+                string query = "SELECT * FROM Veiculos";
                 MySqlCommand cmd = new MySqlCommand(query, con);
 
                 MySqlDataReader reader = cmd.ExecuteReader();
@@ -43,11 +43,11 @@ namespace DriveManager.DAO
                 {
                     Veiculo veiculo = new Veiculo
                     {
-                        Id = (int)reader["Id"],
-                        Placa = (string)reader["Placa"],
-                        Modelo = (string)reader["Modelo"],
-                        Cor = (string)reader["Cor"],
-                        MotoristaId = (int)reader["MotoristaId"]
+                        id_veiculo = (long)reader["id_veiculo"],
+                        placa = (string)reader["placa"],
+                        modelo = (string)reader["modelo"],
+                        cor = (string)reader["cor"],
+                        id_motorista = (long)reader["id_motorista"]
                     };
 
                     veiculos.Add(veiculo);
@@ -57,12 +57,12 @@ namespace DriveManager.DAO
             return veiculos;
         }
 
-        public Veiculo GetVeiculoById(int id)
+        public Veiculo GetVeiculoById(long id)
         {
             using (var con = new MySqlConnection(connectionString))
             {
                 con.Open();
-                string query = "SELECT * FROM Veiculo WHERE Id = @Id";
+                string query = "SELECT * FROM Veiculos WHERE id_veiculo = @Id";
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@Id", id);
 
@@ -71,11 +71,11 @@ namespace DriveManager.DAO
                 {
                     Veiculo veiculo = new Veiculo()
                     {
-                        Id = (int)reader["Id"],
-                        Placa = (string)reader["Placa"],
-                        Modelo = (string)reader["Modelo"],
-                        Cor = (string)reader["Cor"],
-                        MotoristaId = (int)reader["MotoristaId"]
+                        id_veiculo = (long)reader["id_veiculo"],
+                        placa = (string)reader["placa"],
+                        modelo = (string)reader["modelo"],
+                        cor = (string)reader["cor"],
+                        id_motorista = (long)reader["id_motorista"]
                     };
                     con.Close();
                     return veiculo;
@@ -85,12 +85,12 @@ namespace DriveManager.DAO
             }
         }
 
-        public void DeleteVeiculo(int id)
+        public void DeleteVeiculo(long id)
         {
             using (var conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "DELETE FROM Veiculo WHERE Id = @Id";
+                string query = "DELETE FROM Veiculos WHERE id_veiculo = @Id";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Id", id);
                 cmd.ExecuteNonQuery();
@@ -99,13 +99,13 @@ namespace DriveManager.DAO
             }
         }
 
-        public List<Veiculo> GetVeiculoByMotorista(int MotoristaId)
+        public List<Veiculo> GetVeiculoByMotorista(long MotoristaId)
         {
             List<Veiculo> veiculos = new List<Veiculo>();
             using (var conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT * FROM Veiculo WHERE MotoristaId = @MotoristaId";
+                string query = "SELECT * FROM Veiculos WHERE id_motorista = @MotoristaId";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@MotoristaId", MotoristaId);
 
@@ -114,11 +114,11 @@ namespace DriveManager.DAO
                 {
                     Veiculo veiculo = new Veiculo
                     {
-                        Id = (int)reader["Id"],
-                        Placa = (string)reader["Placa"],
-                        Modelo = (string)reader["Modelo"],
-                        Cor = (string)reader["Cor"],
-                        MotoristaId = (int)reader["MotoristaId"]
+                        id_veiculo = (long)reader["id_veiculo"],
+                        placa = (string)reader["placa"],
+                        modelo = (string)reader["modelo"],
+                        cor = (string)reader["cor"],
+                        id_motorista = (long)reader["id_motorista"]
                     };
 
                     veiculos.Add(veiculo);
@@ -129,23 +129,7 @@ namespace DriveManager.DAO
 
         }
 
-        public void AtualizarVeiculo(Veiculo veiculo)
-        {
-            using (var con = new MySqlConnection(connectionString))
-            {
-                con.Open();
-                string query = "UPDATE Veiculo SET Placa = @Placa, Modelo = @Modelo, Cor = @Cor, MotoristaId = @MotoId WHERE Id = @Id";
-                MySqlCommand cmd = new MySqlCommand(query, con);
-
-                cmd.Parameters.AddWithValue("@Id", veiculo.Id);
-                cmd.Parameters.AddWithValue("@Placa", veiculo.Placa);
-                cmd.Parameters.AddWithValue("@Modelo", veiculo.Modelo);
-                cmd.Parameters.AddWithValue("@Cor", veiculo.Cor);
-                cmd.Parameters.AddWithValue("@MotoId", veiculo.MotoristaId);
-
-                cmd.ExecuteNonQuery();
-            }
-        }
+        
 
 
     }

@@ -25,11 +25,11 @@ namespace DriveManager.Views
 
         private void CarregarMotoristasComboBox()
         {
-            var motoristas = motoristaController.GetMotoristaAtivos();
+            var motoristas = motoristaController.GetAllMotoristas();
 
             motoristaBox.DataSource = motoristas;
-            motoristaBox.DisplayMember = "Nome";
-            motoristaBox.ValueMember = "Id";
+            motoristaBox.DisplayMember = "nome";
+            motoristaBox.ValueMember = "id_motorista";
         }
 
         private void cadBtn_Click(object sender, EventArgs e)
@@ -37,7 +37,7 @@ namespace DriveManager.Views
             string placa = placaTxt.Text;
             string modelo = modeloTxt.Text;
             string cor = corTxt.Text;
-            int id_motorista = (int)motoristaBox.SelectedValue;
+            long id_motorista = (long)motoristaBox.SelectedValue;
 
             veiculoController.CadastrarVeiculos(placa, modelo, cor, id_motorista);
 

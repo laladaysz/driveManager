@@ -26,11 +26,11 @@ namespace DriveManager.Views
             string nome = nomeTxt.Text;
             string email = emailTxt.Text;
             string telefone = telTxt.Text;
-            bool ativo = true;
+            
 
             try
             {
-                motoristaController.CadastrarMotorista(nome, email, telefone, ativo);
+                motoristaController.CadastrarMotorista(nome, email, telefone);
                 nomeTxt.Text = "";
                 emailTxt.Text = "";
                 telTxt.Text = "";

@@ -34,3 +34,4 @@ C:\Users\ct67ca\Desktop\DriveManager\obj\Debug\net8.0-windows\DriveManager.Prope
 C:\Users\ct67ca\Desktop\DriveManager\obj\Debug\net8.0-windows\DriveManager.Views.Home.resources
 C:\Users\ct67ca\Desktop\DriveManager\obj\Debug\net8.0-windows\DriveManager.Views.CadastroMotoristas.resources
 C:\Users\ct67ca\Desktop\DriveManager\obj\Debug\net8.0-windows\DriveManager.Views.CadastroVeiculo.resources
+C:\Users\ct67ca\Desktop\DriveManager\obj\Debug\net8.0-windows\DriveManager.Views.GenMotorista.resources

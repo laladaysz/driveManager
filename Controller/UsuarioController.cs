@@ -17,22 +17,21 @@ namespace DriveManager.Controller
             usuarioDAO = new UsuarioDAO();
         }
 
-        public void CadastrarUsuario(string nome, string email, string senha, string role, bool ativado)
+        public void CadastrarUsuario(string nome, string login, string senha, string role)
         {
             Usuario usuario = new Usuario
             {
-                Nome = nome,
-                Email = email,
-                Senha = senha,
-                Role = role,
-                Ativado = ativado
+                nome = nome,
+                login = login,
+                senha = senha,
+                role = role
             };
             usuarioDAO.CadastrarUsuario(usuario);
         }
 
-        public Usuario AutenticarUsuario(string email, string senha)
+        public Usuario AutenticarUsuario(string login, string senha)
         {
-            return usuarioDAO.AutenticarUsuario(email, senha);
+            return usuarioDAO.AutenticarUsuario(login, senha);
         }
 
         public List<Usuario> GetAllUsuarios()

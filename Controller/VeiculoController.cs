@@ -24,29 +24,29 @@ namespace DriveManager.Controller
             return veiculoDAO.GetAllVeiculos();
         }
 
-        public void CadastrarVeiculos(string placa, string modelo, string cor, int idMotorista)
+        public void CadastrarVeiculos(string placa, string modelo, string cor, long idMotorista)
         {
             Veiculo veiculo = new Veiculo()
             {
-                Placa = placa,
-                Modelo = modelo,
-                Cor = cor
+                placa = placa,
+                modelo = modelo,
+                cor = cor
             };
 
             veiculoDAO.CadastrarVeiculo(veiculo, idMotorista);
         }
 
-        public Veiculo GetVeiculoById(int id)
+        public Veiculo GetVeiculoById(long id)
         {
             return veiculoDAO.GetVeiculoById(id);
         }
 
-        public void DeleteVeiculo(int id)
+        public void DeleteVeiculo(long id)
         {
             veiculoDAO.DeleteVeiculo(id);
         }
 
-        public List<Veiculo> GetVeiculosByMotorista(int idMotorista)
+        public List<Veiculo> GetVeiculosByMotorista(long idMotorista)
         {
             return veiculoDAO.GetVeiculoByMotorista(idMotorista);
         }
@@ -58,35 +58,22 @@ namespace DriveManager.Controller
 
             foreach (var veiculo in veiculos)
             {
-                string nomeMotorista = motoristaController.GetNomeMotoristaById(veiculo.MotoristaId) ?? "Desconhecido";
+                string nomeMotorista = motoristaController.GetNomeMotoristaById(veiculo.id_motorista) ?? "Desconhecido";
                 resultado.Add((veiculo, nomeMotorista));
             }
 
             return resultado;
         }
 
-        public (Veiculo veiculo, string nomeMotorista) GetVeiculoComMotoristaPorId(int idVeiculo)
+        public (Veiculo veiculo, string nomeMotorista) GetVeiculoComMotoristaPorId(long idVeiculo)
         {
             var veiculo = veiculoDAO.GetVeiculoById(idVeiculo);
 
-            string nomeMotorista = motoristaController.GetNomeMotoristaById(veiculo.MotoristaId);
+            string nomeMotorista = motoristaController.GetNomeMotoristaById(veiculo.id_motorista);
 
             return (veiculo, nomeMotorista);
         }
 
-        public void AtualizarVeiculo(int id, string placa, string modelo, string cor, int motoristaId)
-        {
-            var veiculo = new Veiculo
-            {
-                Id = id,
-                Placa = placa,
-                Modelo = modelo,
-                Cor = cor,
-                MotoristaId = motoristaId,
-            };
-
-            veiculoDAO.AtualizarVeiculo(veiculo);
-        }
 
 
 

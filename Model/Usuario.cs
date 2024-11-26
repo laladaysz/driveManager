@@ -8,11 +8,10 @@ namespace DriveManager.Model
 {
     public class Usuario
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Senha { get; set; }
-        public string Role { get; set; }
-        public bool Ativado { get; set; }
+        public long id_usuario { get; set; }
+        public string nome { get; set; }
+        public string login { get; set; }
+        public string senha { get; set; }
+        public string role { get; set; }
     }
 }

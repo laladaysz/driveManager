@@ -10,20 +10,20 @@ namespace DriveManager.DAO
 {
     public class UsuarioDAO
     {
-        private string connectionString = "server=localhost;database=parking_lot;user=root;password=";
+        private string connectionString = "server=localhost;database=EasyPark;user=root;password=";
 
         public void CadastrarUsuario(Usuario usuario)
         {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "INSERT INTO Usuario (Nome, Email, Senha, Role, Ativado) VALUES (@Nome, @Email, @Senha, @Role, @Ativado)";
+                string query = "INSERT INTO Usuario (nome, login, senha, role) VALUES (@Nome, @Login, @Senha, @Role)";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Nome", usuario.Nome);
-                cmd.Parameters.AddWithValue("@Email", usuario.Email);
-                cmd.Parameters.AddWithValue("@Senha", usuario.Senha);
-                cmd.Parameters.AddWithValue("@Role", usuario.Role);
-                cmd.Parameters.AddWithValue("@Ativado", usuario.Ativado);
+                cmd.Parameters.AddWithValue("@Nome", usuario.nome);
+                cmd.Parameters.AddWithValue("@Login", usuario.login);
+                cmd.Parameters.AddWithValue("@Senha", usuario.senha);
+                cmd.Parameters.AddWithValue("@Role", usuario.role);
+               
                 cmd.ExecuteNonQuery();
             }
         }
@@ -32,34 +32,26 @@ namespace DriveManager.DAO
 
       
 
-        public Usuario AutenticarUsuario(string email, string senha)
+        public Usuario AutenticarUsuario(string login, string senha)
         {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT * FROM Usuario WHERE Email = @Email AND Senha = @Senha";
+                string query = "SELECT * FROM Usuario WHERE login = @Login AND senha = @Senha";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Login", login);
                 cmd.Parameters.AddWithValue("@Senha", senha);
 
                 MySqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-
-                    bool ativado = (bool)reader["Ativado"];
-                    if (!ativado)
-                    {
-                        throw new Exception("Conta desativada.");
-                    }
-
                     Usuario usuario = new Usuario
                     {
-                        Id = (int)reader["Id"],
-                        Nome = (string)reader["Nome"],
-                        Email = (string)reader["Email"],
-                        Senha = (string)reader["Senha"],
-                        Role = (string)reader["Role"],
-                        Ativado = (bool)reader["Ativado"]
+                        id_usuario = (long)reader["id_usuario"],  
+                        login = (string)reader["login"],
+                        senha = (string)reader["senha"],
+                        nome = (string)reader["nome"],
+                        role = (string)reader["role"]
                     };
                     return usuario;
                 }
@@ -82,12 +74,11 @@ namespace DriveManager.DAO
                 {
                     Usuario usuario = new Usuario
                     {
-                        Id = (int)reader["Id"],
-                        Nome = (string)reader["Nome"],
-                        Email = (string)reader["Email"],
-                        Senha = (string)reader["Senha"],
-                        Role = (string)reader["Role"],
-                        Ativado = (bool)reader["Ativado"]
+                        id_usuario = (long)reader["idUsuario"],
+                        nome = (string)reader["nome"],
+                        login = (string)reader["login"],
+                        senha = (string)reader["senha"],
+                        role = (string)reader["role"]
                     };
 
                     usuarios.Add(usuario);
