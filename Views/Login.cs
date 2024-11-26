@@ -1,6 +1,9 @@
 using DriveManager.Controller;
 using DriveManager.Model;
 using DriveManager.Views;
+using Org.BouncyCastle.Crypto.Generators;
+using System.Text;
+using BCrypt.Net;
 
 namespace DriveManager
 {
@@ -16,21 +19,28 @@ namespace DriveManager
 
         }
 
+        private string GerarHashSenha(string senha)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(senha);
+        }
+
         private void entrarBtn_Click(object sender, EventArgs e)
         {
             string email = emailTxtBox.Text;
             string senha = senhaTxtBox.Text;
 
+            string senhaHash = GerarHashSenha(senha);
+
             UsuarioController usuarioController = new UsuarioController();
 
-            Usuario usuario = usuarioController.AutenticarUsuario(email, senha);
+            Usuario usuario = usuarioController.AutenticarUsuario(email, senhaHash);
 
             if (usuario != null)
             {
                 MessageBox.Show("Login realizado com sucesso! Seja bem-vindo, " + usuario.nome);
                 this.Hide();
 
-                if (usuario.role == "ADMIN")
+                if (usuario.role == "ROLE_ADMIN")
                 {
                     this.Hide();
                     Home home = new Home();
@@ -45,7 +55,8 @@ namespace DriveManager
             }
             else
             {
-                MessageBox.Show("Email ou senha incorretos. Tente novamente.");
+                MessageBox.Show( senhaHash);
+                Console.WriteLine(senhaHash);
             }
         }
 
