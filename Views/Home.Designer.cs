@@ -138,6 +138,7 @@ namespace DriveManager.Views
             button4.TabIndex = 8;
             button4.Text = "entrar";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // Home
             // 

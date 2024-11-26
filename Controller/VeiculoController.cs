@@ -69,7 +69,7 @@ namespace DriveManager.Controller
         {
             var veiculo = veiculoDAO.GetVeiculoById(idVeiculo);
 
-            string nomeMotorista = motoristaController.GetNomeMotoristaById(veiculo.id_motorista);
+            string nomeMotorista = motoristaController.GetNomeMotoristaById(veiculo.id_veiculo);
 
             return (veiculo, nomeMotorista);
         }

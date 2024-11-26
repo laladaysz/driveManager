@@ -37,5 +37,12 @@ namespace DriveManager.Views
             GenMotorista cadastro = new GenMotorista();
             cadastro.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form1 GenVeiculos = new Form1();
+            GenVeiculos.Show();
+        }
     }
 }
