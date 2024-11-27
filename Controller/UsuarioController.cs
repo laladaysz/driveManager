@@ -29,9 +29,9 @@ namespace DriveManager.Controller
             usuarioDAO.CadastrarUsuario(usuario);
         }
 
-        public Usuario AutenticarUsuario(string login, string senha)
+        public Usuario AutenticarUsuario(string login)
         {
-            return usuarioDAO.AutenticarUsuario(login, senha);
+            return usuarioDAO.AutenticarUsuario(login);
         }
 
         public List<Usuario> GetAllUsuarios()

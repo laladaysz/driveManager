@@ -32,15 +32,14 @@ namespace DriveManager.DAO
 
       
 
-        public Usuario AutenticarUsuario(string login, string senha)
+        public Usuario AutenticarUsuario(string login)
         {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT * FROM Usuario WHERE login = @Login AND senha = @Senha";
+                string query = "SELECT * FROM Usuario WHERE login = @Login";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Login", login);
-                cmd.Parameters.AddWithValue("@Senha", senha);
 
                 MySqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())

@@ -19,44 +19,44 @@ namespace DriveManager
 
         }
 
-        private string GerarHashSenha(string senha)
-        {
-            return BCrypt.Net.BCrypt.HashPassword(senha);
-        }
-
         private void entrarBtn_Click(object sender, EventArgs e)
         {
             string email = emailTxtBox.Text;
             string senha = senhaTxtBox.Text;
 
-            string senhaHash = GerarHashSenha(senha);
-
             UsuarioController usuarioController = new UsuarioController();
 
-            Usuario usuario = usuarioController.AutenticarUsuario(email, senhaHash);
+            Usuario usuario = usuarioController.AutenticarUsuario(email);
 
             if (usuario != null)
             {
-                MessageBox.Show("Login realizado com sucesso! Seja bem-vindo, " + usuario.nome);
-                this.Hide();
 
-                if (usuario.role == "ROLE_ADMIN")
+                bool senhaCorreta = BCrypt.Net.BCrypt.Verify(senha, usuario.senha);
+
+                if (senhaCorreta)
                 {
+                    MessageBox.Show("Login realizado com sucesso! Seja bem-vindo, " + usuario.nome);
                     this.Hide();
-                    Home home = new Home();
-                    home.Show();
 
-                }
-                else
+                    if (usuario.role == "ROLE_ADMIN")
+                    {
+                        this.Hide();
+                        Home home = new Home();
+                        home.Show();
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Você não tem permissão para acessar esse sistema!");
+                    }
+                } else
                 {
-                    MessageBox.Show("Você não tem permissão para acessar esse sistema!");
+                    MessageBox.Show("Senha incorreta!");
                 }
-
             }
             else
             {
-                MessageBox.Show( senhaHash);
-                Console.WriteLine(senhaHash);
+                MessageBox.Show("Usuário não encontrado! Tente novamente.");
             }
         }
 
