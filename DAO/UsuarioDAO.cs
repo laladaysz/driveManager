@@ -28,10 +28,6 @@ namespace DriveManager.DAO
             }
         }
 
-       
-
-      
-
         public Usuario AutenticarUsuario(string login)
         {
             using (MySqlConnection conn = new MySqlConnection(connectionString))

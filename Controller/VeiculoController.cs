@@ -1,5 +1,6 @@
 ﻿using DriveManager.DAO;
 using DriveManager.Model;
+using Org.BouncyCastle.Math.EC.Endo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,9 +68,9 @@ namespace DriveManager.Controller
 
         public (Veiculo veiculo, string nomeMotorista) GetVeiculoComMotoristaPorId(long idVeiculo)
         {
-            var veiculo = veiculoDAO.GetVeiculoById(idVeiculo);
-
-            string nomeMotorista = motoristaController.GetNomeMotoristaById(veiculo.id_veiculo);
+            Veiculo veiculo = veiculoDAO.GetVeiculoById(idVeiculo);
+            
+            string nomeMotorista = motoristaController.GetNomeMotoristaById(veiculo.id_motorista);
 
             return (veiculo, nomeMotorista);
         }

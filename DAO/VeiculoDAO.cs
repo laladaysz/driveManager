@@ -90,12 +90,22 @@ namespace DriveManager.DAO
             using (var conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "DELETE FROM Veiculos WHERE id_veiculo = @Id";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Id", id);
-                cmd.ExecuteNonQuery();
-                conn.Close();
 
+                
+                string deleteEntradaSaida = "DELETE FROM entradas_saidas WHERE id_veiculo = @Id";
+                using (MySqlCommand del = new MySqlCommand(deleteEntradaSaida, conn))
+                {
+                    del.Parameters.AddWithValue("@Id", id);
+                    del.ExecuteNonQuery(); 
+                }
+
+                
+                string query = "DELETE FROM Veiculos WHERE id_veiculo = @Id";
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
 
@@ -128,9 +138,6 @@ namespace DriveManager.DAO
             return veiculos;
 
         }
-
-        
-
 
     }
 }
